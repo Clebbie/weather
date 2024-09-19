@@ -43,7 +43,7 @@ func (service *WeatherService) CheckWeather(ctx context.Context, req *connect.Re
 		return nil, err
 	}
 	weatherURL.ForceQuery = true
-	weatherKey := os.Getenv("weatherstack_key")
+	weatherKey := os.Getenv("WEATHERSTACK_KEY")
 	q := weatherURL.Query()
 	q.Set("access_key", weatherKey)
 	q.Set("query", req.Msg.Zipcode)
