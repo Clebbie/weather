@@ -14,12 +14,6 @@ import (
 	"github.com/clebbie/weather/internal"
 )
 
-const (
-	practiceURL = `https://nominatim.openstreetmap.org/search.php?street=13624+Dessau+Rd&city=Pflugerville&state=texas&postalcode=78660&format=jsonv2`
-	baseURL     = `https://www.mapquestapi.com/geocoding/v1/address`
-	weatherKey  = "07e4d6ffabf5c474e6e9ae5a66f3cf59"
-)
-
 // WeatherService implements the protobuf service.
 type WeatherService struct {
 	cache     internal.CacheInterface
@@ -49,6 +43,7 @@ func (service *WeatherService) CheckWeather(ctx context.Context, req *connect.Re
 		return nil, err
 	}
 	weatherURL.ForceQuery = true
+	weatherKey := os.Getenv("weatherstack_key")
 	q := weatherURL.Query()
 	q.Set("access_key", weatherKey)
 	q.Set("query", req.Msg.Zipcode)

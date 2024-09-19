@@ -4,6 +4,7 @@ go 1.23.1
 
 require (
 	connectrpc.com/connect v1.16.2
+	github.com/magiconair/properties v1.8.7
 	golang.org/x/net v0.29.0
 	google.golang.org/protobuf v1.33.0
 )
