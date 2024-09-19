@@ -44,6 +44,10 @@ func (service *WeatherService) CheckWeather(ctx context.Context, req *connect.Re
 	}
 	weatherURL.ForceQuery = true
 	weatherKey := os.Getenv("WEATHERSTACK_KEY")
+	if weatherKey == "" {
+		os.Stderr.WriteString("api key is missing! Please set the key as an environment variable WEATHERSTACK_KEY")
+		return nil, err
+	}
 	q := weatherURL.Query()
 	q.Set("access_key", weatherKey)
 	q.Set("query", req.Msg.Zipcode)
@@ -74,7 +78,8 @@ func (service *WeatherService) CheckWeather(ctx context.Context, req *connect.Re
 	service.cache.AddWeatherData(req.Msg.Zipcode, weatherData)
 
 	res := connect.NewResponse(&weatherv1.CheckWeatherResponse{
-		CurrentTemp: fmt.Sprintf("%d C", weatherData.Current.Temperature),
+		CurrentTemp:      fmt.Sprintf("%d C", weatherData.Current.Temperature),
+		IsCachedResponse: weatherData.IsCachedResponse,
 	})
 	return res, nil
 }

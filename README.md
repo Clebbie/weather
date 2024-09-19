@@ -23,7 +23,8 @@ POST `localhost:8080/weather.v1.WeatherService/CheckWeather`
 
 ## Technology Used
 
-In this project, I am using Buf's ConnectRPC. This allows this project to serve both HTTP requests and gRPC requests. I think This serves the project best by allowing me to expose a browser friendly api, as well a speed and effecient gRPC connections for other apps or tools to use.
+In this project, I am using Buf's ConnectRPC. This allows this project to serve both HTTP requests and gRPC requests. I think This serves the project best by allowing me to expose a browser friendly api, as well a speed and effecient gRPC connections for other apps
+or tools to use.
 
 I chose to implement the challenge as a micro service to keep the program modular and allow it to drop into an existing system or build an
 application around it.
@@ -32,4 +33,4 @@ I also implemented the cache as a hashmap, but it is just implementing an interf
 
 ## Whats next?
 
-If I were to continue to develop this project, I would add a docker file for this first. With that, it would really be ready to deploy. I would also like to add more flags in the requests such as using fahrenheit instead of only celsius.
+If I were to continue to develop this project, I would add a docker file for this first. With that, it would really be ready to deploy. I would also like to add more flags in the requests such as using fahrenheit instead of only celsius. I would also like to implement the max and min tempueratures plus the forcast, but the weatherstack api hides that info behind a paywall.
