@@ -1,0 +1,25 @@
+syntax="proto3";
+
+package weather.v1;
+
+option go_package = "github.com/clebbie/weather/gen/weather/v1;weatherv1";
+
+
+message CheckWeatherRequest{
+  string address_line_one =1;
+  string address_line_two =2;
+  string city =3;
+  string state =4;
+  string zipcode =5;
+  }
+
+message CheckWeatherResponse{
+    string current_temp =1;
+    string high_temp =2;
+    string low_temp =3;
+    bool is_cached_response=4;
+  }
+
+service WeatherService{
+  rpc CheckWeather(CheckWeatherRequest) returns (CheckWeatherResponse){}
+  }
